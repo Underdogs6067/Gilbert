@@ -3,8 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-//Carter's brain is a piece of trash
-//Carter Bartholomew James Mason is a stinky bozo
+//Using VictorSP Motor Controllers
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj. PneumaticsModuleType;
@@ -33,14 +32,14 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  private final PWMVictorSPX leftDrive = new PWMVictorSPX(0);
-  private final PWMVictorSPX rightDrive = new PWMVictorSPX(1);
-  private final PWMVictorSPX pivotDrive = new PWMVictorSPX(2);
+  private final PWMVictorSPX leftDrive = new PWMVictorSPX(1);
+  private final PWMVictorSPX rightDrive = new PWMVictorSPX(0);
+  private final PWMVictorSPX gearDrive = new PWMVictorSPX(2);
   private final PWMVictorSPX extenderDrive = new PWMVictorSPX(3);
   private final DifferentialDrive myDrive = new DifferentialDrive(leftDrive, rightDrive);
   private Joystick myJoystick = new Joystick(0);
   private Joystick yourJoystick = new Joystick(1);
-  private final DoubleSolenoid doublesolenoid1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,0,1 );
+  private final DoubleSolenoid doublesolenoid1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,0,7 );
   /** // private final XboxController m_controller = new XboxController(0);
  //private final Timer m_timer = new Timer();
    * This function is run when the robot is first started up and should be used for any
@@ -67,40 +66,65 @@ public class Robot extends TimedRobot {
  
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
+  public void autonomousPeriodic(){
     switch (m_autoSelected) {
-      case kCustomAuto:
-      if (m_Timer.get()< 5 ) {
-        leftDrive.set(1);
-        rightDrive.set(1);}
+      case kDefaultAuto:
+     
+     if(m_Timer.get()<1) 
+
+     if(m_Timer.get()>1.5 ) 
+    {extenderDrive.set(1); gearDrive.set(-.2);}
+    if(m_Timer.get()>3.5)
+    {extenderDrive.stopMotor();gearDrive.stopMotor();}
+
+    if(m_Timer.get()>3.5)
+    {doublesolenoid1.set(DoubleSolenoid.Value.kForward);}
+
+    if(m_Timer.get()>4)
+    {extenderDrive.set(-1);}
+
+    if(m_Timer.get()>6)
+    {extenderDrive.stopMotor();}
+
+      if(m_Timer.get()>7)
+      {leftDrive.set(-1); rightDrive.set(-1);}
+
+      if(m_Timer.get()>12)
+      {leftDrive.stopMotor();rightDrive.stopMotor();}
+
+      if(m_Timer.get() < 5 ) {
+        leftDrive.set(-1);
+        rightDrive.set(-1);}
       
         if (m_Timer.get()> 6.2 ) {
           leftDrive.set(-1);
           rightDrive.set(-1);}
       
-        if (m_Timer.get()> 10) {
-          leftDrive.stopMotor();
-          rightDrive.stopMotor(); }
+        if (m_Timer.get()> 14.5) {
+        leftDrive.stopMotor();
+         rightDrive.stopMotor(); }
         break;
-         case kDefaultAuto:
+         case kCustomAuto:
       default:
+        }
+      }
           
-    if (m_Timer.get() < 3)
-    {extenderDrive.set(1); pivotDrive.set(.7);}
-    else{extenderDrive.stopMotor(); pivotDrive.stopMotor();}
+   // if (m_Timer.get() < 3)
+    //{extenderDrive.set(1); gearDrive.set(.7);}
+   // else{extenderDrive.stopMotor(); gearDrive.stopMotor();}
    
-    if (m_Timer.get() > 3.5) {doublesolenoid1.set(DoubleSolenoid.Value.kForward);
-    }
+   // if (m_Timer.get() > 3.5) {doublesolenoid1.set(DoubleSolenoid.Value.kForward);
+   // }
  
-    if (m_Timer.get()> 6) { 
-    leftDrive.set(.8);
-    rightDrive.set(.8); }
+   // if (m_Timer.get()> 6) { 
+   // leftDrive.set(.8);
+   // rightDrive.set(.8); }
 
-  if (m_Timer.get()> 10) {
-    leftDrive.set(0);
-    rightDrive.set(0); }
+ // if (m_Timer.get()> 10) {
+    //leftDrive.set(0);
+   // rightDrive.set(0); }
 
-        break;}}
+     //   break;}}
 
 
   
@@ -113,37 +137,37 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    myDrive.arcadeDrive(yourJoystick.getRawAxis(0), yourJoystick.getRawAxis(1));
+    myDrive.arcadeDrive(myJoystick.getRawAxis(0), myJoystick.getRawAxis(1));
 
     //Pivot Arm
-    if(myJoystick.getRawButton(5)) //this is l trigger
-    {pivotDrive.set(.8);}
-    else if (myJoystick.getRawButton(6))//this is r trigger
-    {pivotDrive.set(-.8);}
-    else {pivotDrive.set(0);}
+    if(yourJoystick.getRawButton(5)) //this is l trigger
+    {gearDrive.set(8);}
+    else if (yourJoystick.getRawButton(6))//this is r trigger
+    {gearDrive.set(-.8);}
+    else {gearDrive.set(0);}
 
     //Extender Arm
-if(myJoystick.getRawButton(5)) //this is left trigger
+if(yourJoystick.getRawButton(1)) //this is left trigger
     {extenderDrive.set(.8);}
-    else if (myJoystick.getRawButton(6))//this is right trigger
+    else if (yourJoystick.getRawButton(2))//this is right trigger
     {extenderDrive.set(-.8);}
     else {extenderDrive.set(0);}
+  
+    //could you please only extend for 3 seconds and not past 4 ft
+    
+
 
 
     //Grabber
-    if(yourJoystick.getRawButton(1)) //A
+    if(myJoystick.getRawButton(2)) //A
     {doublesolenoid1.set(DoubleSolenoid.Value.kForward);
     }
-    else if(yourJoystick.getRawButton(2)) //B
+    else if(myJoystick.getRawButton(1)) //B
     {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);
     }
 
   }
 
-
-
-
-  
   /** This function is called once each time the robot enters test mode. */
   @Override
   public void testInit() {}

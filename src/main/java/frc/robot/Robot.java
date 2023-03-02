@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.hal.DigitalGlitchFilterJNI;
+//import edu.wpi.first.hal.DigitalGlitchFilterJNI;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 // NOT IN BUFORD import edu.wpi.first.wpilibj.XboxController;
@@ -95,16 +95,16 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
     if(m_Timer.get()>9 & m_Timer.get()<15)
     {extenderDrive.stopMotor();}
 
-      if(m_Timer.get()>9 & m_Timer.get()<12)
-      {leftDrive.set(-.9);}
+      if(m_Timer.get()>9 & m_Timer.get()<12.5)
+      {leftDrive.set(-.6);}
 
 
-    if(m_Timer.get()>9 & m_Timer.get()<12)
-    {rightDrive.set(-.9);}
+    if(m_Timer.get()>9 & m_Timer.get()<12.5)
+    {rightDrive.set(.7);}
       
-    if(m_Timer.get()>12)
+    if(m_Timer.get()>12.5)
       {leftDrive.stopMotor();}
-    if(m_Timer.get()>12)
+    if(m_Timer.get()>12.5)
     {leftDrive.stopMotor();}
 
   
@@ -144,25 +144,15 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
   public void teleopPeriodic() {
     myDrive.arcadeDrive(myJoystick.getRawAxis(0), myJoystick.getRawAxis(1));
 
+    // @Override
+    // Public void setMotorSpeed(double speed) {
 
     //Pivot Arm
-    if(yourJoystick.getRawButton(5)) //this is l trigger
-        //Upper Limit Switch
-        if (toplimitSwitch.get()) {
-          gearDrive.set(0);
-      }
-      else {
-        gearDrive.set(.8);
-      }
-    
+if(yourJoystick.getRawButton(5)) //this is l trigger
+    {gearDrive.set(0.6);}   
     else if (yourJoystick.getRawButton(6))//this is r trigger
-    //Lower Limit Switch
-        if (bottomlimitSwitch.get()) {
-          gearDrive.set(0);
-      }
-      else {
-        gearDrive.set(-.8);
-      }
+      {gearDrive.set(-.6);}
+    else {gearDrive.set(0);}
 
     //Extender Arm
 if(yourJoystick.getRawButton(1)) //this is left trigger
@@ -180,24 +170,25 @@ if(yourJoystick.getRawButton(1)) //this is left trigger
     {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
     }
 
-//     //Upper Limit Switch
-//     public void setGearDrive(double speed) {
-//     if(speed > 0) {
-//       if (toplimitSwitch.get()) {
-//         gearDrive.set(0);
-//       }
-//       else {
-//         gearDrive.set(.8);
-//       }
-//     }
-//     else {
-//       if (bottomlimitSwitch.get()) {
-//         gearDrive.set(0);
-//       }
-//       else {
-//         gearDrive.set(-.8);
-//       }
-//     }
+    //Upper Limit Switch
+    public void setGearDrive(double speed) {
+    if(speed > 0) {
+      if (toplimitSwitch.get()) {
+        gearDrive.set(0);
+      }
+      else {
+        gearDrive.set(.8);
+      }
+    }
+    else {
+      if (bottomlimitSwitch.get()) {
+        gearDrive.set(0);
+      }
+      else {
+        gearDrive.set(-.8);
+      }
+    }
+    }
   
 
   /** This function is called once each time the robot enters test mode. */

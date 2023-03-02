@@ -147,10 +147,22 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
 
     //Pivot Arm
     if(yourJoystick.getRawButton(5)) //this is l trigger
-    {gearDrive.set(8);}
+        //Upper Limit Switch
+        if (toplimitSwitch.get()) {
+          gearDrive.set(0);
+      }
+      else {
+        gearDrive.set(.8);
+      }
+    
     else if (yourJoystick.getRawButton(6))//this is r trigger
-    {gearDrive.set(-.8);}
-    else {gearDrive.set(0);}
+    //Lower Limit Switch
+        if (bottomlimitSwitch.get()) {
+          gearDrive.set(0);
+      }
+      else {
+        gearDrive.set(-.8);
+      }
 
     //Extender Arm
 if(yourJoystick.getRawButton(1)) //this is left trigger
@@ -168,24 +180,24 @@ if(yourJoystick.getRawButton(1)) //this is left trigger
     {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
     }
 
-    //Limit Switches
-    public void setGearDrive(double speed) {
-    if(speed > 0) {
-      if (toplimitSwitch.get()) {
-        gearDrive.set(0);
-      }
-      else {
-        gearDrive.set(.8);
-      }
-    }
-    else {
-      if (bottomlimitSwitch.get()) {
-        gearDrive.set(0);
-      }
-      else {
-        gearDrive.set(-.8);
-      }
-    }
+//     //Upper Limit Switch
+//     public void setGearDrive(double speed) {
+//     if(speed > 0) {
+//       if (toplimitSwitch.get()) {
+//         gearDrive.set(0);
+//       }
+//       else {
+//         gearDrive.set(.8);
+//       }
+//     }
+//     else {
+//       if (bottomlimitSwitch.get()) {
+//         gearDrive.set(0);
+//       }
+//       else {
+//         gearDrive.set(-.8);
+//       }
+//     }
   }
 
   /** This function is called once each time the robot enters test mode. */

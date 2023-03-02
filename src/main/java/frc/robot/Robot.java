@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.hal.DigitalGlitchFilterJNI;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 // NOT IN BUFORD import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -38,6 +40,8 @@ public class Robot extends TimedRobot {
   private final PWMVictorSPX extenderDrive = new PWMVictorSPX(3);
   private final DifferentialDrive myDrive = new DifferentialDrive(leftDrive, rightDrive);
   private Joystick myJoystick = new Joystick(0);
+  DigitalInput toplimitSwitch = new DigitalInput(0); 
+  DigitalInput bottomlimitSwitch = new DigitalInput(1);
   private Joystick yourJoystick = new Joystick(1);
   private final DoubleSolenoid doublesolenoid1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,0,7 );
   /** // private final XboxController m_controller = new XboxController(0);
@@ -70,39 +74,40 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kDefaultAuto:
      
-     if(m_Timer.get()<1) 
+    //  if(m_Timer.get()> .5 & m_Timer.get()< 6)
+    //  {leftDrive.stopMotor(); rightDrive.stopMotor();}
+if(m_Timer.get()>0 & m_Timer.get()<.7)
+{doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
-     if(m_Timer.get()>1.5 ) 
-    {extenderDrive.set(1); gearDrive.set(-.2);}
-    if(m_Timer.get()>3.5)
-    {extenderDrive.stopMotor();gearDrive.stopMotor();}
-
-    if(m_Timer.get()>3.5)
-    {doublesolenoid1.set(DoubleSolenoid.Value.kForward);}
-
+     if(m_Timer.get()>1 & m_Timer.get()<4) 
+    {extenderDrive.set(1); gearDrive.set(-.6);}
+    if(m_Timer.get()>2.5 )
+    {gearDrive.stopMotor();}
     if(m_Timer.get()>4)
-    {extenderDrive.set(-1);}
-
-    if(m_Timer.get()>6)
     {extenderDrive.stopMotor();}
 
-      if(m_Timer.get()>7)
-      {leftDrive.set(-1); rightDrive.set(-1);}
+    if(m_Timer.get()>6.5 & m_Timer.get()<7)
+    {doublesolenoid1.set(DoubleSolenoid.Value.kForward);}
 
-      if(m_Timer.get()>12)
-      {leftDrive.stopMotor();rightDrive.stopMotor();}
+    if(m_Timer.get()>7 & m_Timer.get()<9)
+    {extenderDrive.set(-1);}
 
-      if(m_Timer.get() < 5 ) {
-        leftDrive.set(-1);
-        rightDrive.set(-1);}
+    if(m_Timer.get()>9 & m_Timer.get()<15)
+    {extenderDrive.stopMotor();}
+
+      if(m_Timer.get()>9 & m_Timer.get()<12)
+      {leftDrive.set(-.9);}
+
+
+    if(m_Timer.get()>9 & m_Timer.get()<12)
+    {rightDrive.set(-.9);}
       
-        if (m_Timer.get()> 6.2 ) {
-          leftDrive.set(-1);
-          rightDrive.set(-1);}
-      
-        if (m_Timer.get()> 14.5) {
-        leftDrive.stopMotor();
-         rightDrive.stopMotor(); }
+    if(m_Timer.get()>12)
+      {leftDrive.stopMotor();}
+    if(m_Timer.get()>12)
+    {leftDrive.stopMotor();}
+
+  
         break;
          case kCustomAuto:
       default:
@@ -139,6 +144,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     myDrive.arcadeDrive(myJoystick.getRawAxis(0), myJoystick.getRawAxis(1));
 
+
     //Pivot Arm
     if(yourJoystick.getRawButton(5)) //this is l trigger
     {gearDrive.set(8);}
@@ -152,20 +158,34 @@ if(yourJoystick.getRawButton(1)) //this is left trigger
     else if (yourJoystick.getRawButton(2))//this is right trigger
     {extenderDrive.set(-.8);}
     else {extenderDrive.set(0);}
-  
     //could you please only extend for 3 seconds and not past 4 ft
     
-
-
-
     //Grabber
     if(myJoystick.getRawButton(2)) //A
     {doublesolenoid1.set(DoubleSolenoid.Value.kForward);
     }
     else if(myJoystick.getRawButton(1)) //B
-    {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);
+    {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
     }
 
+    //Limit Switches
+    public void setGearDrive(double speed) {
+    if(speed > 0) {
+      if (toplimitSwitch.get()) {
+        gearDrive.set(0);
+      }
+      else {
+        gearDrive.set(.8);
+      }
+    }
+    else {
+      if (bottomlimitSwitch.get()) {
+        gearDrive.set(0);
+      }
+      else {
+        gearDrive.set(-.8);
+      }
+    }
   }
 
   /** This function is called once each time the robot enters test mode. */

@@ -198,7 +198,7 @@ if(yourJoystick.getRawButton(1)) //this is left trigger
 //         gearDrive.set(-.8);
 //       }
 //     }
-  }
+  
 
   /** This function is called once each time the robot enters test mode. */
   @Override
@@ -206,5 +206,5 @@ if(yourJoystick.getRawButton(1)) //this is left trigger
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
-}
+  public void testPeriodic() {}}
+  

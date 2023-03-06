@@ -95,16 +95,16 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
     if(m_Timer.get()>9 & m_Timer.get()<15)
     {extenderDrive.stopMotor();}
 
-      if(m_Timer.get()>9 & m_Timer.get()<12.5)
+      if(m_Timer.get()>9 & m_Timer.get()<11.5)
       {leftDrive.set(-.6);}
 
 
-    if(m_Timer.get()>9 & m_Timer.get()<12.5)
+    if(m_Timer.get()>9 & m_Timer.get()<11.5)
     {rightDrive.set(.7);}
       
-    if(m_Timer.get()>12.5)
+    if(m_Timer.get()>11.5)
       {leftDrive.stopMotor();}
-    if(m_Timer.get()>12.5)
+    if(m_Timer.get()>11.5)
     {leftDrive.stopMotor();}
 
   
@@ -149,16 +149,16 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
 
     //Pivot Arm
 if(yourJoystick.getRawButton(5)) //this is l trigger
-    {gearDrive.set(0.6);}   
+    {gearDrive.set(1);}   
     else if (yourJoystick.getRawButton(6))//this is r trigger
-      {gearDrive.set(-.6);}
+      {gearDrive.set(-1);}
     else {gearDrive.set(0);}
 
     //Extender Arm
 if(yourJoystick.getRawButton(1)) //this is left trigger
-    {extenderDrive.set(.8);}
+    {extenderDrive.set(1);}
     else if (yourJoystick.getRawButton(2))//this is right trigger
-    {extenderDrive.set(-.8);}
+    {extenderDrive.set(-1);}
     else {extenderDrive.set(0);}
     //could you please only extend for 3 seconds and not past 4 ft
     

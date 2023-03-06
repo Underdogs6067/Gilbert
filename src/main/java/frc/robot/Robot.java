@@ -151,8 +151,8 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
 if(yourJoystick.getRawButton(5)) //this is l trigger
       if (toplimitSwitch.get()) {gearDrive.set(0);}
       else {gearDrive.set(0.4);}
-    // else if (yourJoystick.getRawButton(6))//this is r trigger
-    //   {gearDrive.set(-1);}
+  else if (yourJoystick.getRawButton(6))//this is r trigger
+   {gearDrive.set(-1);}
     else {gearDrive.set(0);}
 
     //Extender Arm

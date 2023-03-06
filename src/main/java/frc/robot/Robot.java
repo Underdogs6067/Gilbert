@@ -152,7 +152,8 @@ if(yourJoystick.getRawButton(5)) //this is l trigger
       if (toplimitSwitch.get()) {gearDrive.set(0);}
       else {gearDrive.set(0.4);}
   else if (yourJoystick.getRawButton(6))//this is r trigger
-   {gearDrive.set(-1);}
+      if (bottomlimitSwitch.get()) {gearDrive.set(0);}
+      else {gearDrive.set(-.4);}
     else {gearDrive.set(0);}
 
     //Extender Arm

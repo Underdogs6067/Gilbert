@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   private final PWMVictorSPX extenderDrive = new PWMVictorSPX(3);
   private final DifferentialDrive myDrive = new DifferentialDrive(leftDrive, rightDrive);
   private Joystick myJoystick = new Joystick(0);
-  DigitalInput toplimitSwitch = new DigitalInput(0); 
+  DigitalInput toplimitSwitch = new DigitalInput (0); 
   DigitalInput bottomlimitSwitch = new DigitalInput(1);
   private Joystick yourJoystick = new Joystick(1);
   private final DoubleSolenoid doublesolenoid1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,0,7 );
@@ -149,9 +149,10 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
 
     //Pivot Arm
 if(yourJoystick.getRawButton(5)) //this is l trigger
-    {gearDrive.set(1);}   
-    else if (yourJoystick.getRawButton(6))//this is r trigger
-      {gearDrive.set(-1);}
+      if (toplimitSwitch.get()) {gearDrive.set(0);}
+      else {gearDrive.set(0.4);}
+    // else if (yourJoystick.getRawButton(6))//this is r trigger
+    //   {gearDrive.set(-1);}
     else {gearDrive.set(0);}
 
     //Extender Arm

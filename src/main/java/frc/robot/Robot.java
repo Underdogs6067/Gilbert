@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic(){
     switch (m_autoSelected) {
-      case kDefaultAuto:
+      case kDefaultAuto: 
      
     //  if(m_Timer.get()> .5 & m_Timer.get()< 6)
     //  {leftDrive.stopMotor(); rightDrive.stopMotor();}
@@ -107,9 +107,30 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
     if(m_Timer.get()>11.5)
     {leftDrive.stopMotor();}
 
-  
-        break;
-         case kCustomAuto:
+    break;
+      case kCustomAuto:
+       if(m_Timer.get()>0 & m_Timer.get()<4)
+       {leftDrive.set(-.6);}
+
+       if(m_Timer.get()>0 & m_Timer.get()<4)
+       {rightDrive.set(.7);}
+
+       if(m_Timer.get()>4 & m_Timer.get()<4.5)
+       {leftDrive.stopMotor();}
+       if(m_Timer.get()>4 & m_Timer.get()<4.5)
+       {rightDrive.stopMotor();}
+
+       if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
+       {leftDrive.set(.6);}
+
+       if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
+       {rightDrive.set(-.7);}
+
+       if(m_Timer.get()>8)
+       {leftDrive.stopMotor();}
+       if(m_Timer.get()>8)
+       {rightDrive.stopMotor();}
+
       default:
         }
       }

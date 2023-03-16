@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+//import javax.print.attribute.standard.Sides;
+
 import edu.wpi.first.cameraserver.CameraServer;
 //import edu.wpi.first.hal.DigitalGlitchFilterJNI;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -30,8 +33,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class Robot extends TimedRobot {
   private final Timer m_Timer = new Timer();
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
+  private static final String kDefaultAuto = "Sides";
+  private static final String kCustomAuto = "Middle";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private final PWMVictorSPX leftDrive = new PWMVictorSPX(1);
@@ -51,8 +54,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
- m_chooser.setDefaultOption("DefaultAuto", kDefaultAuto);
- m_chooser.addOption("My Auto", kCustomAuto);
+ m_chooser.setDefaultOption("Sides", kDefaultAuto);
+ m_chooser.addOption("Middle", kCustomAuto);
  SmartDashboard.putData("Auto choices", m_chooser);
  CameraServer .startAutomaticCapture();
   }
@@ -72,11 +75,35 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic(){
     switch (m_autoSelected) {
-      case kDefaultAuto: 
+      case kCustomAuto: 
+      
+      if(m_Timer.get()>0 & m_Timer.get()<4)
+      {leftDrive.set(-.6);}
+
+      if(m_Timer.get()>0 & m_Timer.get()<4)
+      {rightDrive.set(.7);}
+
+      if(m_Timer.get()>4 & m_Timer.get()<4.5)
+      {leftDrive.stopMotor();}
+      if(m_Timer.get()>4 & m_Timer.get()<4.5)
+      {rightDrive.stopMotor();}
+
+      if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
+      {leftDrive.set(.6);}
+
+      if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
+      {rightDrive.set(-.7);}
+
+      if(m_Timer.get()>8)
+      {leftDrive.stopMotor();}
+      if(m_Timer.get()>8)
+      {rightDrive.stopMotor();}
      
-    //  if(m_Timer.get()> .5 & m_Timer.get()< 6)
-    //  {leftDrive.stopMotor(); rightDrive.stopMotor();}
-if(m_Timer.get()>0 & m_Timer.get()<.7)
+    break;
+      case kDefaultAuto:
+      default:
+
+      if(m_Timer.get()>0 & m_Timer.get()<.7)
 {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
      if(m_Timer.get()>1 & m_Timer.get()<4) 
@@ -106,32 +133,7 @@ if(m_Timer.get()>0 & m_Timer.get()<.7)
       {leftDrive.stopMotor();}
     if(m_Timer.get()>11.5)
     {leftDrive.stopMotor();}
-
     break;
-      case kCustomAuto:
-       if(m_Timer.get()>0 & m_Timer.get()<4)
-       {leftDrive.set(-.6);}
-
-       if(m_Timer.get()>0 & m_Timer.get()<4)
-       {rightDrive.set(.7);}
-
-       if(m_Timer.get()>4 & m_Timer.get()<4.5)
-       {leftDrive.stopMotor();}
-       if(m_Timer.get()>4 & m_Timer.get()<4.5)
-       {rightDrive.stopMotor();}
-
-       if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
-       {leftDrive.set(.6);}
-
-       if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
-       {rightDrive.set(-.7);}
-
-       if(m_Timer.get()>8)
-       {leftDrive.stopMotor();}
-       if(m_Timer.get()>8)
-       {rightDrive.stopMotor();}
-
-      default:
         }
       }
           

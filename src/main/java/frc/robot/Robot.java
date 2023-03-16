@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-//Using VictorSP Motor Controllers
+//Using VictorSPX Motor Controllers
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj. PneumaticsModuleType;

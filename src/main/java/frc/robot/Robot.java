@@ -137,30 +137,30 @@ public class Robot extends TimedRobot {
       //  String magnetStrengthUnits = _CANCoder2.getLastUnitString();
       //  double magnetStrengthTstmp = _CANCoder2.getLastTimestamp();
 
-      System.out.print("Position: ");
-      printValue(posValue, posUnits, posTstmp);
-      System.out.print("Abs Pos : ");
-      printValue(absValue, absUnits, absTstmp);
-      System.out.print("Velocity: ");
-      printValue(velValue, velUnits, velTstmp);
-      System.out.print("Battery : ");
-      printValue(batValue, batUnits, batTstmp);
-      System.out.print("Strength: ");
-      printValue(magnetStrength, magnetStrengthUnits, magnetStrengthTstmp);
+      // System.out.print("Position: ");
+      // printValue(posValue, posUnits, posTstmp);
+      // System.out.print("Abs Pos : ");
+      // printValue(absValue, absUnits, absTstmp);
+      // System.out.print("Velocity: ");
+      // printValue(velValue, velUnits, velTstmp);
+      // System.out.print("Battery : ");
+      // printValue(batValue, batUnits, batTstmp);
+      // System.out.print("Strength: ");
+      // printValue(magnetStrength, magnetStrengthUnits, magnetStrengthTstmp);
 
-      /* Fault reporting */
-      CANCoderFaults faults = new CANCoderFaults();
-      _CANCoder1.getFaults(faults);
-      CANCoderStickyFaults stickyFaults = new CANCoderStickyFaults();
-      _CANCoder1.getStickyFaults(stickyFaults);
+      // /* Fault reporting */
+      // CANCoderFaults faults = new CANCoderFaults();
+      // _CANCoder1.getFaults(faults);
+      // CANCoderStickyFaults stickyFaults = new CANCoderStickyFaults();
+      // _CANCoder1.getStickyFaults(stickyFaults);
 
-      System.out.println("Faults:");
-      printFaults(faults);
-      System.out.println("Sticky Faults:");
-      printFaults(stickyFaults);
+      // System.out.println("Faults:");
+      // printFaults(faults);
+      // System.out.println("Sticky Faults:");
+      // printFaults(stickyFaults);
 
-      System.out.println();
-      System.out.println();
+      // System.out.println();
+      // System.out.println();
     }
   }
   @Override

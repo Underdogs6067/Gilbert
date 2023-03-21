@@ -58,6 +58,14 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
+//CTRE CANcoder sample code from:
+  //github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/CANCoder/src/main/java/frc/robot/Robot.java
+  final int PRINTOUT_DELAY = 100; // in Milliseconds
+  WPI_CANCoder _CANCoder1 = new WPI_CANCoder(1, "rio");
+  WPI_CANCoder _CANCoder2 = new WPI_CANCoder(2, "rio");
+  CANCoderConfiguration _canCoderConfiguration = new CANCoderConfiguration();
+
   @Override
   public void robotInit() {
  m_chooser.setDefaultOption("Sides", kDefaultAuto);

@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
     }
 
     public void run() {
-      /* Report position, absolute position, velocity, battery voltage */
+      /* Report position, absolute position, velocity, battery voltage gearDrive ENCODER*/
       double posValue = _CANCoder1.getPosition();
       String posUnits = _CANCoder1.getLastUnitString();
       double posTstmp = _CANCoder1.getLastTimestamp();
@@ -125,11 +125,46 @@ public class Robot extends TimedRobot {
       System.out.print("Strength: ");
       printValue(magnetStrength, magnetStrengthUnits, magnetStrengthTstmp);
 
+     /* Report position, absolute position, velocity, battery voltage */
+     double posValue2 = _CANCoder2.getPosition();
+     String posUnits2 = _CANCoder2.getLastUnitString();
+     double posTstmp2 = _CANCoder2.getLastTimestamp();
+     
+     double absValue2 = _CANCoder2.getAbsolutePosition();
+     String absUnits2 = _CANCoder2.getLastUnitString();
+     double absTstmp2 = _CANCoder2.getLastTimestamp();
+     
+     double velValue2 = _CANCoder2.getVelocity();
+     String velUnits2 = _CANCoder2.getLastUnitString();
+     double velTstmp2 = _CANCoder2.getLastTimestamp();
+     
+     double batValue2 = _CANCoder2.getBusVoltage();
+     String batUnits2 = _CANCoder2.getLastUnitString();
+     double batTstmp2 = _CANCoder2.getLastTimestamp();
+
+     /* Report miscellaneous attributes about the CANCoder */
+     MagnetFieldStrength magnetStrength2 = _CANCoder2.getMagnetFieldStrength();
+     String magnetStrengthUnits2 = _CANCoder2.getLastUnitString();
+     double magnetStrengthTstmp2 = _CANCoder2.getLastTimestamp();
+
+     System.out.print("Position: ");
+     printValue(posValue2, posUnits2, posTstmp2);
+     System.out.print("Abs Pos : ");
+     printValue(absValue2, absUnits2, absTstmp2);
+     System.out.print("Velocity: ");
+     printValue(velValue2, velUnits2, velTstmp2);
+     System.out.print("Battery : ");
+     printValue(batValue2, batUnits2, batTstmp2);
+     System.out.print("Strength: ");
+     printValue(magnetStrength2, magnetStrengthUnits2, magnetStrengthTstmp2);
+
       /* Fault reporting */
       CANCoderFaults faults = new CANCoderFaults();
       _CANCoder1.getFaults(faults);
+      _CANCoder2.getFaults(faults);
       CANCoderStickyFaults stickyFaults = new CANCoderStickyFaults();
       _CANCoder1.getStickyFaults(stickyFaults);
+      _CANCoder2.getStickyFaults(stickyFaults);
 
       System.out.println("Faults:");
       printFaults(faults);
@@ -263,10 +298,12 @@ public class Robot extends TimedRobot {
 if(yourJoystick.getRawButton(5)) //this is l trigger
       if (toplimitSwitch.get()) {gearDrive.set(0);}
       else {gearDrive.set(1);}
-  else if (yourJoystick.getRawButton(6))//this is r trigger
+      else {gearDrive.set(0);}
+
+   if (yourJoystick.getRawButton(6))//this is r trigger
       if (bottomlimitSwitch.get()) {gearDrive.set(0);}
       else {gearDrive.set(-1);}
-    else {gearDrive.set(0);}
+      else {gearDrive.set(0);}
 
     //Extender Arm
 if(yourJoystick.getRawButton(1)) //this is left trigger

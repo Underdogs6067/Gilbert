@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import com.ctre.phoenix.platform.DeviceType;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.sensors.CANCoderFaults;
 import com.ctre.phoenix.sensors.CANCoderStickyFaults;
@@ -61,6 +63,7 @@ public class Robot extends TimedRobot {
 
 //CTRE CANcoder sample code from:
   //github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/CANCoder/src/main/java/frc/robot/Robot.java
+ 
   final int PRINTOUT_DELAY = 100; // in Milliseconds
   WPI_CANCoder _CANCoder1 = new WPI_CANCoder(1, "rio");
   WPI_CANCoder _CANCoder2 = new WPI_CANCoder(2, "rio");
@@ -90,7 +93,7 @@ public class Robot extends TimedRobot {
     }
 
     public void run() {
-      /* Report position, absolute position, velocity, battery voltage */
+      /* Report position, absolute position, velocity, battery voltage CANCoder1*/
       double posValue = _CANCoder1.getPosition();
       String posUnits = _CANCoder1.getLastUnitString();
       double posTstmp = _CANCoder1.getLastTimestamp();
@@ -111,6 +114,28 @@ public class Robot extends TimedRobot {
       MagnetFieldStrength magnetStrength = _CANCoder1.getMagnetFieldStrength();
       String magnetStrengthUnits = _CANCoder1.getLastUnitString();
       double magnetStrengthTstmp = _CANCoder1.getLastTimestamp();
+
+      //  /* Report position, absolute position, velocity, battery voltage CANCoder2*/
+      //  double posValue = _CANCoder2.getPosition();
+      //  String posUnits = _CANCoder2.getLastUnitString();
+      //  double posTstmp = _CANCoder2.getLastTimestamp();
+       
+      //  double absValue = _CANCoder2.getAbsolutePosition();
+      //  String absUnits = _CANCoder2.getLastUnitString();
+      //  double absTstmp = _CANCoder2.getLastTimestamp();
+       
+      //  double velValue = _CANCoder2.getVelocity();
+      //  String velUnits = _CANCoder2.getLastUnitString();
+      //  double velTstmp = _CANCoder2.getLastTimestamp();
+       
+      //  double batValue = _CANCoder2.getBusVoltage();
+      //  String batUnits = _CANCoder2.getLastUnitString();
+      //  double batTstmp = _CANCoder2.getLastTimestamp();
+ 
+      //  /* Report miscellaneous attributes about the CANCoder */
+      //  MagnetFieldStrength magnetStrength = _CANCoder2.getMagnetFieldStrength();
+      //  String magnetStrengthUnits = _CANCoder2.getLastUnitString();
+      //  double magnetStrengthTstmp = _CANCoder2.getLastTimestamp();
 
       System.out.print("Position: ");
       printValue(posValue, posUnits, posTstmp);

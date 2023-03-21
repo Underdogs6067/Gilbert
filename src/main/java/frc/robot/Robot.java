@@ -106,20 +106,20 @@ public class Robot extends TimedRobot {
       if(m_Timer.get()>0 & m_Timer.get()<.7)
 {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
-     if(m_Timer.get()>1 & m_Timer.get()<4) 
+     if(m_Timer.get()>1 & m_Timer.get()<2.5) 
     {extenderDrive.set(1); gearDrive.set(-.6);}
-    if(m_Timer.get()>2.5 )
+    if(m_Timer.get()>2 )
     {gearDrive.stopMotor();}
-    if(m_Timer.get()>4)
+    if(m_Timer.get()>2.5)
     {extenderDrive.stopMotor();}
 
     if(m_Timer.get()>6.5 & m_Timer.get()<7)
     {doublesolenoid1.set(DoubleSolenoid.Value.kForward);}
 
-    if(m_Timer.get()>7 & m_Timer.get()<9)
+    if(m_Timer.get()>7 & m_Timer.get()<8)
     {extenderDrive.set(-1);}
 
-    if(m_Timer.get()>9 & m_Timer.get()<15)
+    if(m_Timer.get()>9 & m_Timer.get()<12)
     {extenderDrive.stopMotor();}
 
       if(m_Timer.get()>9 & m_Timer.get()<11.5)

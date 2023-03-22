@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.sensors.CANCoderFaults;
 import com.ctre.phoenix.sensors.CANCoderStickyFaults;
@@ -63,6 +65,7 @@ public class Robot extends TimedRobot {
   WPI_CANCoder _CANCoder1 = new WPI_CANCoder(1, "rio");
   WPI_CANCoder _CANCoder2 = new WPI_CANCoder(2, "rio");
   CANCoderConfiguration _canCoderConfiguration = new CANCoderConfiguration();
+  private ErrorCode setPosition;
 
     /**  
    * Doing lots of printing in Java creates a large overhead 
@@ -295,9 +298,11 @@ public class Robot extends TimedRobot {
     // Public void setMotorSpeed(double speed) {
 
     //Pivot Arm
-if(yourJoystick.getRawButton(5)) //this is l trigger
-      if (toplimitSwitch.get()) {gearDrive.set(0);}
+if (toplimitSwitch.get()) {ErrorCode setPosition = _CANCoder1.setPosition(0);} 
+if (yourJoystick.getRawButton(5)) //this is l trigger
+if (toplimitSwitch.get()) {gearDrive.set(0);}
       else {gearDrive.set(1);}
+      // if (_CANCoder1 Position <200 && _CANCoder2 get.Position <200)
       else {gearDrive.set(0);}
 
    if (yourJoystick.getRawButton(6))//this is r trigger

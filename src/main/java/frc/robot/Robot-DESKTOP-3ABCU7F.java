@@ -218,11 +218,11 @@ public class Robot extends TimedRobot {
       if(m_Timer.get()>0 & m_Timer.get()<2)
 {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
-     if(m_Timer.get()>1 & m_Timer.get()<3.5) 
+     if(m_Timer.get()>1 & m_Timer.get()<2.5) 
     {extenderDrive.set(1); gearDrive.set(-.4);}
-    if(m_Timer.get()>1 )
+    if(m_Timer.get()>2 )
     {gearDrive.stopMotor();}
-    if(m_Timer.get()>3.5)
+    if(m_Timer.get()>2.5)
     {extenderDrive.stopMotor();}
 
     if(m_Timer.get()>5 & m_Timer.get()<5.5)
@@ -267,6 +267,7 @@ public class Robot extends TimedRobot {
      //   break;}}
 
 
+     //new remark
   
   
 
@@ -293,9 +294,9 @@ if(yourJoystick.getRawButton(5)) //this is l trigger
 
     //Extender Arm
 if(yourJoystick.getRawButton(1)) //this is left trigger
-    {extenderDrive.set(1);}
+    {extenderDrive.set(.8);}
     else if (yourJoystick.getRawButton(2))//this is right trigger
-    {extenderDrive.set(-1);}
+    {extenderDrive.set(-.8);}
     else {extenderDrive.set(0);}
     //could you please only extend for 3 seconds and not past 4 ft
     

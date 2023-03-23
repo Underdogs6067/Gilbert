@@ -215,35 +215,36 @@ public class Robot extends TimedRobot {
       case kDefaultAuto:
       default:
 
-      if(m_Timer.get()>0 & m_Timer.get()<2)
-{doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
+      if(m_Timer.get()>0 & m_Timer.get()<8.5)
+{doublesolenoid1.set(DoubleSolenoid.Value.kForward);}
 
-     if(m_Timer.get()>1 & m_Timer.get()<2.5) 
+     if(m_Timer.get()>1 & m_Timer.get()<6.5) 
     {extenderDrive.set(1); gearDrive.set(-.4);}
-    if(m_Timer.get()>2 )
+    if(m_Timer.get()>1.8 )
     {gearDrive.stopMotor();}
-    if(m_Timer.get()>2.5)
+    if(m_Timer.get()>10.5)
     {extenderDrive.stopMotor();}
+   
+    if(m_Timer.get()>10.5)
+    //if(m_Timer.get()>8.5 & m_Timer.get()<9)
+    {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
-    if(m_Timer.get()>5 & m_Timer.get()<5.5)
-    {doublesolenoid1.set(DoubleSolenoid.Value.kForward);}
-
-    if(m_Timer.get()>5.5 & m_Timer.get()<6)
+    if(m_Timer.get()>10.5 & m_Timer.get()<14.5)
     {extenderDrive.set(-1);}
 
-    if(m_Timer.get()>6 & m_Timer.get()<9)
+    if(m_Timer.get()>14.5 & m_Timer.get()<15)
     {extenderDrive.stopMotor();}
 
-      if(m_Timer.get()>6 & m_Timer.get()<9)
+      if(m_Timer.get()>11 & m_Timer.get()<14)
       {leftDrive.set(-.6);}
 
 
-    if(m_Timer.get()>6 & m_Timer.get()<9)
+    if(m_Timer.get()>11 & m_Timer.get()<14)
     {rightDrive.set(.8);}
       
-    if(m_Timer.get()>8.4)
+    if(m_Timer.get()>13.4)
       {leftDrive.stopMotor();}
-    if(m_Timer.get()>8.4)
+    if(m_Timer.get()>13.4)
     {leftDrive.stopMotor();}
     break;
         }
@@ -285,10 +286,10 @@ public class Robot extends TimedRobot {
     //Pivot Arm
 if(yourJoystick.getRawButton(5)) //this is l trigger
       if (toplimitSwitch.get()) {gearDrive.set(0);}
-      else {gearDrive.set(1);}
+      else {gearDrive.set(.8);}
   else if (yourJoystick.getRawButton(6))//this is r trigger
       if (bottomlimitSwitch.get()) {gearDrive.set(0);}
-      else {gearDrive.set(-1);}
+      else {gearDrive.set(-.8);}
     else {gearDrive.set(0);}
 
     //Extender Arm

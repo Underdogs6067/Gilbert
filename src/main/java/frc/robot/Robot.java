@@ -293,9 +293,9 @@ if(yourJoystick.getRawButton(5)) //this is l trigger
 
     //Extender Arm
 if(yourJoystick.getRawButton(1)) //this is left trigger
-    {extenderDrive.set(.8);}
+    {extenderDrive.set(1);}
     else if (yourJoystick.getRawButton(2))//this is right trigger
-    {extenderDrive.set(-.8);}
+    {extenderDrive.set(-1);}
     else {extenderDrive.set(0);}
     //could you please only extend for 3 seconds and not past 4 ft
     

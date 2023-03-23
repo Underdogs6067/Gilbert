@@ -218,11 +218,11 @@ public class Robot extends TimedRobot {
       if(m_Timer.get()>0 & m_Timer.get()<2)
 {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
-     if(m_Timer.get()>1 & m_Timer.get()<3.5) 
+     if(m_Timer.get()>1 & m_Timer.get()<2.5) 
     {extenderDrive.set(1); gearDrive.set(-.4);}
     if(m_Timer.get()>2 )
     {gearDrive.stopMotor();}
-    if(m_Timer.get()>3.5)
+    if(m_Timer.get()>2.5)
     {extenderDrive.stopMotor();}
 
     if(m_Timer.get()>5 & m_Timer.get()<5.5)

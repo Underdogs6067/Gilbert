@@ -222,7 +222,7 @@ public class Robot extends TimedRobot {
     {extenderDrive.set(1); gearDrive.set(-.4);}
     if(m_Timer.get()>1.8 )
     {gearDrive.stopMotor();}
-    if(m_Timer.get()>10.5)
+    if(m_Timer.get()>7.5)
     {extenderDrive.stopMotor();}
    
     if(m_Timer.get()>10.5)
@@ -235,8 +235,8 @@ public class Robot extends TimedRobot {
     if(m_Timer.get()>14.5 & m_Timer.get()<15)
     {extenderDrive.stopMotor();}
 
-      if(m_Timer.get()>11 & m_Timer.get()<14)
-      {leftDrive.set(-.6);}
+   if(m_Timer.get()>11 & m_Timer.get()<14)
+    {leftDrive.set(-.6);}
 
 
     if(m_Timer.get()>11 & m_Timer.get()<14)

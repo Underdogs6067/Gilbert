@@ -301,10 +301,10 @@ if(yourJoystick.getRawButton(1)) //this is left trigger
     //could you please only extend for 3 seconds and not past 4 ft
     
     //Grabber
-    if(myJoystick.getRawButton(2)) //A
+    if(myJoystick.getRawButton(1)) //A
     {doublesolenoid1.set(DoubleSolenoid.Value.kForward);
     }
-    else if(myJoystick.getRawButton(1)) //B
+    else if(myJoystick.getRawButton(2)) //B
     {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
     }
 

@@ -14,22 +14,9 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
-// import com.ctre.phoenix.platform.DeviceType;
-// import com.ctre.phoenix.sensors.CANCoderConfiguration;
-// import com.ctre.phoenix.sensors.CANCoderFaults;
-// import com.ctre.phoenix.sensors.CANCoderStickyFaults;
-// import com.ctre.phoenix.sensors.MagnetFieldStrength;
-// import com.ctre.phoenix.sensors.WPI_CANCoder;
-
-//import javax.print.attribute.standard.Sides;
-//Encoders Tuned
-
 import edu.wpi.first.cameraserver.CameraServer;
-//import edu.wpi.first.hal.DigitalGlitchFilterJNI;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-// NOT IN BUFORD import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
 /**
@@ -61,108 +48,6 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-//CTRE CANcoder sample code from:
-  //github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/CANCoder/src/main/java/frc/robot/Robot.java
- 
-  // final int PRINTOUT_DELAY = 100; // in Milliseconds
-  // WPI_CANCoder _CANCoder1 = new WPI_CANCoder(1, "rio");
-  // WPI_CANCoder _CANCoder2 = new WPI_CANCoder(2, "rio");
-  // CANCoderConfiguration _canCoderConfiguration = new CANCoderConfiguration();
-
-  
-  // class Instrument extends Thread {
-  //   void printFaults(CANCoderFaults faults) {
-  //     System.out.printf("Hardware fault: %s\t    Under Voltage fault: %s\t    Reset During Enable fault: %s\t    API Error fault: %s%n", 
-  //       faults.HardwareFault ? "True " : "False",
-  //       faults.UnderVoltage ? "True " : "False",
-  //       faults.ResetDuringEn ? "True " : "False",
-  //       faults.APIError ? "True " : "False");
-  //   }
-  //   void printFaults(CANCoderStickyFaults faults) {
-  //     System.out.printf("Hardware fault: %s\t    Under Voltage fault: %s\t    Reset During Enable fault: %s\t     API Error fault: %s%n", 
-  //       faults.HardwareFault ? "True " : "False",
-  //       faults.UnderVoltage ? "True " : "False",
-  //       faults.ResetDuringEn ? "True " : "False",
-  //       faults.APIError ? "True " : "False");
-  //   }
-  //   void printValue(double val, String units, double timestamp) {
-  //     System.out.printf("%20f %-20s @ %f%n", val, units, timestamp);
-  //   }
-  //   void printValue(MagnetFieldStrength val, String units, double timestamp) {
-  //     System.out.printf("%20s %-20s @ %f%n", val.toString(), units, timestamp);
-  //   }
-
-  //   public void run() {
-  //     /* Report position, absolute position, velocity, battery voltage CANCoder1*/
-  //     double posValue = _CANCoder1.getPosition();
-  //     String posUnits = _CANCoder1.getLastUnitString();
-  //     double posTstmp = _CANCoder1.getLastTimestamp();
-      
-  //     double absValue = _CANCoder1.getAbsolutePosition();
-  //     String absUnits = _CANCoder1.getLastUnitString();
-  //     double absTstmp = _CANCoder1.getLastTimestamp();
-      
-  //     double velValue = _CANCoder1.getVelocity();
-  //     String velUnits = _CANCoder1.getLastUnitString();
-  //     double velTstmp = _CANCoder1.getLastTimestamp();
-      
-  //     double batValue = _CANCoder1.getBusVoltage();
-  //     String batUnits = _CANCoder1.getLastUnitString();
-  //     double batTstmp = _CANCoder1.getLastTimestamp();
-
-  //     /* Report miscellaneous attributes about the CANCoder */
-  //     MagnetFieldStrength magnetStrength = _CANCoder1.getMagnetFieldStrength();
-  //     String magnetStrengthUnits = _CANCoder1.getLastUnitString();
-  //     double magnetStrengthTstmp = _CANCoder1.getLastTimestamp();
-
-  //     //  /* Report position, absolute position, velocity, battery voltage CANCoder2*/
-  //     //  double posValue = _CANCoder2.getPosition();
-  //     //  String posUnits = _CANCoder2.getLastUnitString();
-  //     //  double posTstmp = _CANCoder2.getLastTimestamp();
-       
-  //     //  double absValue = _CANCoder2.getAbsolutePosition();
-  //     //  String absUnits = _CANCoder2.getLastUnitString();
-  //     //  double absTstmp = _CANCoder2.getLastTimestamp();
-       
-  //     //  double velValue = _CANCoder2.getVelocity();
-  //     //  String velUnits = _CANCoder2.getLastUnitString();
-  //     //  double velTstmp = _CANCoder2.getLastTimestamp();
-       
-  //     //  double batValue = _CANCoder2.getBusVoltage();
-  //     //  String batUnits = _CANCoder2.getLastUnitString();
-  //     //  double batTstmp = _CANCoder2.getLastTimestamp();
- 
-  //     //  /* Report miscellaneous attributes about the CANCoder */
-  //     //  MagnetFieldStrength magnetStrength = _CANCoder2.getMagnetFieldStrength();
-  //     //  String magnetStrengthUnits = _CANCoder2.getLastUnitString();
-  //     //  double magnetStrengthTstmp = _CANCoder2.getLastTimestamp();
-
-  //     // System.out.print("Position: ");
-  //     // printValue(posValue, posUnits, posTstmp);
-  //     // System.out.print("Abs Pos : ");
-  //     // printValue(absValue, absUnits, absTstmp);
-  //     // System.out.print("Velocity: ");
-  //     // printValue(velValue, velUnits, velTstmp);
-      // System.out.print("Battery : ");
-      // printValue(batValue, batUnits, batTstmp);
-      // System.out.print("Strength: ");
-      // printValue(magnetStrength, magnetStrengthUnits, magnetStrengthTstmp);
-
-      // /* Fault reporting */
-      // CANCoderFaults faults = new CANCoderFaults();
-      // _CANCoder1.getFaults(faults);
-      // CANCoderStickyFaults stickyFaults = new CANCoderStickyFaults();
-      // _CANCoder1.getStickyFaults(stickyFaults);
-
-      // System.out.println("Faults:");
-      // printFaults(faults);
-      // System.out.println("Sticky Faults:");
-      // printFaults(stickyFaults);
-
-      // System.out.println();
-      // System.out.println();
-    // }
-  // }
 
   @Override
   public void robotInit() {
@@ -189,27 +74,6 @@ public class Robot extends TimedRobot {
     switch (m_autoSelected) {
       case kCustomAuto: 
       
-      if(m_Timer.get()>0 & m_Timer.get()<4)
-      {leftDrive.set(-.9);}
-
-      if(m_Timer.get()>0 & m_Timer.get()<4)
-      {rightDrive.set(.8);}
-
-      if(m_Timer.get()>4 & m_Timer.get()<4.5)
-      {leftDrive.stopMotor();}
-      if(m_Timer.get()>4 & m_Timer.get()<4.5)
-      {rightDrive.stopMotor();}
-
-      if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
-      {leftDrive.set(.9);}
-
-      if(m_Timer.get()>4.5 & m_Timer.get()<8.5)
-      {rightDrive.set(-.8);}
-
-      if(m_Timer.get()>8)
-      {leftDrive.stopMotor();}
-      if(m_Timer.get()>8)
-      {rightDrive.stopMotor();}
      
     break;
       case kDefaultAuto:
@@ -226,7 +90,6 @@ public class Robot extends TimedRobot {
     {extenderDrive.stopMotor();}
    
     if(m_Timer.get()>10.5)
-    //if(m_Timer.get()>8.5 & m_Timer.get()<9)
     {doublesolenoid1.set(DoubleSolenoid.Value.kReverse);}
 
     if(m_Timer.get()>10.5 & m_Timer.get()<14.5)
@@ -250,22 +113,6 @@ public class Robot extends TimedRobot {
         }
       }
           
-   // if (m_Timer.get() < 3)
-    //{extenderDrive.set(1); gearDrive.set(.7);}
-   // else{extenderDrive.stopMotor(); gearDrive.stopMotor();}
-   
-   // if (m_Timer.get() > 3.5) {doublesolenoid1.set(DoubleSolenoid.Value.kForward);
-   // }
- 
-   // if (m_Timer.get()> 6) { 
-   // leftDrive.set(.8);
-   // rightDrive.set(.8); }
-
- // if (m_Timer.get()> 10) {
-    //leftDrive.set(0);
-   // rightDrive.set(0); }
-
-     //   break;}}
 
 
   
